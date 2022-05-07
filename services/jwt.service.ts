@@ -12,4 +12,4 @@ const signRefreshToken = async (sessionID: string) => {
   return refreshToken;
 };
 
-module.exports = { signAccessToken, signRefreshToken };
+export { signAccessToken, signRefreshToken };
