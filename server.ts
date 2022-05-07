@@ -1,12 +1,14 @@
 import * as dotenv from "dotenv";
-import app from "./app";
-import logger from "./utils/logger";
-
 dotenv.config();
+import logger from "./utils/logger";
+import { checkEnvVariables } from "./checkEnvVariables";
 
-const envPath = process.env.NODE_ENV === "development" ? ".development" : ".production";
-
+const envPath = process.env.NODE_ENV === "production" ? ".production" : ".development";
 dotenv.config({ path: __dirname + `/config/${envPath}` });
+
+checkEnvVariables();
+
+import app from "./app";
 
 const PORT = process.env.PORT || 5000;
 

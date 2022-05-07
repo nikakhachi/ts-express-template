@@ -15,6 +15,7 @@ app.use(cookieParser());
 
 app.use(
   session({
+    // @ts-ignore
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
