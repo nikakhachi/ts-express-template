@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --watchAll",
     "build": "tsc",
-    "dev": "ts-node-dev --respawn server.ts",
+    "dev": "nodemon server.ts",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "lint:check": "eslint .",
@@ -27,6 +27,7 @@
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.5.0",
     "jest": "^27.5.1",
+    "nodemon": "^2.0.19",
     "prettier": "^2.5.1",
     "ts-jest": "^27.1.3",
     "ts-node": "^10.6.0",
