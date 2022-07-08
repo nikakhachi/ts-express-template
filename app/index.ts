@@ -2,9 +2,8 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
-import customizeResponse from "./customizeResponse";
 import routes from "../routes";
-import { TypeCustomError } from "../utils/errors";
+import { NotFoundException, SuccessResponse } from "../utils/httpResponses";
 
 const app = express();
 
@@ -22,14 +21,10 @@ app.use(
   })
 );
 
-app.use(customizeResponse);
-
-app.get("/healthcheck", (req: Request, res: Response) => res.json("Healthy !"));
+app.get("/api/healthcheck", (req: Request, res: Response) => new SuccessResponse(res));
 
 app.use("/api", routes);
 
-app.use((err: TypeCustomError, req: Request, res: Response) => {
-  return res.status(err.status).json({ status: err.status, error: err.message });
-});
+app.use("*", (req, res) => new NotFoundException(res));
 
 export default app;

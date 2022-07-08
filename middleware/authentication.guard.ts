@@ -3,6 +3,7 @@ import { setAccessTokenCookie, setRefreshTokenCookie } from "../services/cookie.
 import { signAccessToken, signRefreshToken } from "../services/jwt.service";
 import jwt from "jsonwebtoken";
 import logger from "../utils/logger";
+import { UnauthorizedException } from "../utils/httpResponses";
 
 const authenticationGuard = async (req: Request, res: Response, next: NextFunction) => {
   logger.debug("Inside Guard");
@@ -25,7 +26,7 @@ const authenticationGuard = async (req: Request, res: Response, next: NextFuncti
       next();
     } catch (e) {
       logger.debug("Both Tokens Failed Validation");
-      return res.status(401).json({ msg: "Auth failed" });
+      return new UnauthorizedException(res);
     }
   }
 };

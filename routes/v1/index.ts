@@ -1,10 +1,8 @@
-import { Router, Request, Response } from "express";
-import { authenticationGuard } from "../../middleware/authentication.guard";
+import { Router } from "express";
+import { SuccessResponse } from "../../utils/httpResponses";
 
 const router = Router();
 
-router.get("/healthcheck", (req: Request, res: Response) => res.json("Healthy !"));
-
-router.get("/validate-user", authenticationGuard, (req: Request, res: Response) => res.json("Validated"));
+router.get("/healthcheck", (req, res) => new SuccessResponse(res));
 
 export default router;
