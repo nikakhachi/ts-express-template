@@ -1,4 +1,0 @@
-PORT=8080
-SESSION_SECRET=prodSecretSession
-JWT_KEY=prodJwtKey
-JWT_REFRESH_KEY=prodJwtRefreshKey

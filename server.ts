@@ -3,9 +3,6 @@ dotenv.config();
 import logger from "./utils/logger";
 import { checkEnvVariables } from "./checkEnvVariables";
 
-const envPath = process.env.NODE_ENV === "production" ? ".production" : ".development";
-dotenv.config({ path: __dirname + `/config/${envPath}` });
-
 checkEnvVariables();
 
 import app from "./app";
