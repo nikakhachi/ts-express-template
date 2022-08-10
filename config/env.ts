@@ -4,14 +4,23 @@ export const ENV_VARIABLES = ["NODE_ENV", "PORT", "SESSION_SECRET", "JWT_KEY", "
 export const NODE_ENV_OPTIONS = ["development", "production", "testing"];
 
 const checkEnvVariables = () => {
+  const missingVars: string[] = [];
+  let hasNodeEnvCorrectValue: boolean | undefined;
+
   for (const item of ENV_VARIABLES) {
     if (!Object.keys(process.env).includes(item)) {
-      logger.error(`${item} env variable is missing. Exiting`);
-      process.exit();
+      missingVars.push(item);
     }
   }
   if (!process.env.NODE_ENV || !NODE_ENV_OPTIONS.includes(process.env.NODE_ENV)) {
-    logger.error(`NODE_ENV should have value from one of these : ${JSON.stringify(NODE_ENV_OPTIONS)}`);
+    hasNodeEnvCorrectValue = false;
+  } else {
+    hasNodeEnvCorrectValue = true;
+  }
+
+  if (missingVars.length || !hasNodeEnvCorrectValue) {
+    missingVars.forEach((item) => logger.error(`${item} env variable is missing`));
+    !hasNodeEnvCorrectValue && logger.error(`NODE_ENV should have value from one of these : ${JSON.stringify(NODE_ENV_OPTIONS)}`);
     process.exit();
   }
 };
