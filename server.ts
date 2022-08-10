@@ -1,11 +1,10 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 import logger from "./utils/logger";
-import { checkEnvVariables } from "./checkEnvVariables";
+import { checkEnvVariables } from "./config/env";
+import app from "./app";
 
 checkEnvVariables();
-
-import app from "./app";
 
 const PORT = process.env.PORT || 5000;
 

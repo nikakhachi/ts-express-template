@@ -1,5 +1,7 @@
-import { ENV_VARIABLES, NODE_ENV_OPTIONS } from "./config/envVariables";
-import logger from "./utils/logger";
+import logger from "../utils/logger";
+
+export const ENV_VARIABLES = ["NODE_ENV", "PORT", "SESSION_SECRET", "JWT_KEY", "JWT_REFRESH_KEY", "DATABASE_URL"];
+export const NODE_ENV_OPTIONS = ["development", "production", "testing"];
 
 const checkEnvVariables = () => {
   for (const item of ENV_VARIABLES) {
